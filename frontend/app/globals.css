@@ -1,0 +1,372 @@
+:root {
+  color-scheme: dark;
+  --bg: #08111f;
+  --panel: rgba(14, 22, 39, 0.9);
+  --panel-strong: rgba(12, 18, 32, 0.96);
+  --text: #f6f8ff;
+  --muted: #9eb1d6;
+  --border: rgba(110, 130, 180, 0.24);
+  --accent: #72f0c3;
+  --accent-2: #7cc9ff;
+  --warning: #ffc968;
+  --danger: #ff7f8f;
+  --success: #72f0c3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, Arial, sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(67, 96, 171, 0.26), transparent 34%),
+    linear-gradient(180deg, #09111f 0%, #040914 100%);
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: none;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 40px 20px 64px;
+}
+
+.shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  gap: 20px;
+}
+
+.panel {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  border-radius: 24px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.24);
+}
+
+.hero {
+  padding: 28px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.9fr);
+  gap: 24px;
+}
+
+.hero h1 {
+  margin: 12px 0;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.hero p,
+.muted {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.hero-head,
+.section-head,
+.rate-header,
+.rate-footer,
+.yield-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.hero-head {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.section-head {
+  padding: 24px 24px 0;
+}
+
+.section-head h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.badge,
+.status-pill,
+.risk-pill,
+.confidence-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  border: 1px solid transparent;
+}
+
+.badge {
+  background: rgba(114, 240, 195, 0.12);
+  color: var(--accent);
+}
+
+.status-pill.success,
+.risk-pill.success,
+.confidence-pill.high {
+  background: rgba(114, 240, 195, 0.12);
+  color: var(--success);
+  border-color: rgba(114, 240, 195, 0.24);
+}
+
+.status-pill.warning,
+.risk-pill.warning,
+.confidence-pill.medium {
+  background: rgba(255, 201, 104, 0.12);
+  color: var(--warning);
+  border-color: rgba(255, 201, 104, 0.24);
+}
+
+.risk-pill.danger,
+.confidence-pill.low {
+  background: rgba(255, 127, 143, 0.12);
+  color: var(--danger);
+  border-color: rgba(255, 127, 143, 0.24);
+}
+
+.hero-callout,
+.note-box {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.metric-card {
+  padding: 18px;
+  border-radius: 18px;
+  background: var(--panel-strong);
+  border: 1px solid var(--border);
+}
+
+.metric-card span,
+.metric-card p,
+.detail-grid dt {
+  color: var(--muted);
+}
+
+.metric-card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.5rem;
+}
+
+.metric-card p {
+  margin-bottom: 0;
+}
+
+.grid.two-up {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.stack-list {
+  padding: 20px 24px 24px;
+  display: grid;
+  gap: 14px;
+}
+
+.stack-list.compact {
+  gap: 12px;
+}
+
+.rate-card,
+.opportunity-card {
+  width: 100%;
+  text-align: left;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.opportunity-card {
+  cursor: pointer;
+  transition:
+    transform 120ms ease,
+    border-color 120ms ease,
+    background 120ms ease;
+}
+
+.opportunity-card:hover,
+.opportunity-card.active {
+  transform: translateY(-1px);
+  border-color: rgba(124, 201, 255, 0.4);
+  background: rgba(124, 201, 255, 0.06);
+}
+
+.rate-card h3,
+.opportunity-card h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.rate-card p,
+.opportunity-card p,
+.note-box p {
+  margin: 6px 0 0;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.detail-grid dd {
+  margin: 6px 0 0;
+  font-weight: 600;
+}
+
+.yield-row {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+.bar-shell {
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+  margin: 14px 0 10px;
+}
+
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+}
+
+.trend-grid {
+  padding: 18px 24px 24px;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.trend-col {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+}
+
+.trend-label {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.trend-bars {
+  height: 150px;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+}
+
+.trend-bar {
+  width: 18px;
+  border-radius: 999px 999px 4px 4px;
+}
+
+.trend-bar-base {
+  background: linear-gradient(180deg, #72f0c3, #29c085);
+}
+
+.trend-bar-cex {
+  background: linear-gradient(180deg, #7cc9ff, #3f7bd8);
+}
+
+.calculator-panel {
+  padding-bottom: 24px;
+}
+
+.control-group {
+  padding: 18px 24px 0;
+  display: grid;
+  gap: 14px;
+}
+
+.control-group label {
+  display: grid;
+  gap: 8px;
+}
+
+.control-group input[type='range'] {
+  width: 100%;
+}
+
+.calc-stats {
+  padding: 18px 24px 0;
+}
+
+.assumptions-list {
+  margin: 0;
+  padding: 18px 24px 0 42px;
+  display: grid;
+  gap: 12px;
+  color: var(--muted);
+}
+
+@media (max-width: 960px) {
+  .hero,
+  .grid.two-up {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .page {
+    padding: 20px 12px 40px;
+  }
+
+  .hero,
+  .section-head,
+  .stack-list,
+  .trend-grid,
+  .control-group,
+  .calc-stats,
+  .assumptions-list {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero-stats,
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trend-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

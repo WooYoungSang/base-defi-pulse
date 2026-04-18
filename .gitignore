@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.env
+node_modules/
+.next/
+coverage/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+frontend/tsconfig.tsbuildinfo
+backend/**/__pycache__/
