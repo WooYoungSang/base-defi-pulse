@@ -14,12 +14,14 @@ from defi_pulse.analytics import (
     build_summary,
 )
 
+from defi_pulse.connectors import ConnectorsResponse, build_connectors_response, live_enabled
+
 app = FastAPI(title="Base DeFi Pulse", version="0.2.0")
 
 
 @app.get("/api/health")
-def health() -> dict[str, str]:
-    return {"status": "ok", "service": "defi_pulse"}
+def health() -> dict[str, str | bool]:
+    return {"status": "ok", "service": "defi_pulse", "live_connectors_enabled": live_enabled()}
 
 
 @app.get("/api/summary", response_model=SummaryResponse)
@@ -52,6 +54,12 @@ def opportunities(
         operational_buffer_bps=operational_buffer_bps,
     )
 
+
+
+
+@app.get("/api/connectors", response_model=ConnectorsResponse)
+def connectors() -> ConnectorsResponse:
+    return build_connectors_response()
 
 @app.get("/api/calculator", response_model=CalculatorResult)
 def calculator(

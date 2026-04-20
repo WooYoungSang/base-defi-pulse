@@ -8,7 +8,10 @@ client = TestClient(app)
 def test_health() -> None:
     response = client.get("/api/health")
     assert response.status_code == 200
-    assert response.json() == {"status": "ok", "service": "defi_pulse"}
+    body = response.json()
+    assert body["status"] == "ok"
+    assert body["service"] == "defi_pulse"
+    assert body["live_connectors_enabled"] is False
 
 
 def test_summary_exposes_divergence_snapshot() -> None:
@@ -69,3 +72,14 @@ def test_calculator_accepts_protocol_override() -> None:
 def test_invalid_calculator_input_is_rejected() -> None:
     response = client.get("/api/calculator", params={"capital": 0})
     assert response.status_code == 422
+
+
+def test_connectors_endpoint_defaults_to_fallback_or_disabled() -> None:
+    response = client.get("/api/connectors")
+    assert response.status_code == 200
+
+    body = response.json()
+    assert body["project"] == "Base DeFi Pulse"
+    assert len(body["connectors"]) == 2
+    assert body["connectors"][0]["status"] in {"disabled", "ok", "error"}
+    assert body["connectors"][1]["status"] == "fallback"

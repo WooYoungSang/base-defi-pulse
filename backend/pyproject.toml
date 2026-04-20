@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "base-defi-pulse"
 version = "0.1.0"
 description = "Compare CEX funding/basis with Base DeFi yields and highlight divergence."
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
     "fastapi>=0.111.0",
     "uvicorn[standard]>=0.29.0",
@@ -29,4 +29,4 @@ pythonpath = ["src"]
 
 [tool.ruff]
 line-length = 100
-target-version = "py310"
+target-version = "py311"

@@ -15,6 +15,7 @@ Base DeFi Pulse compares ETH perp funding/basis on major CEX venues with Base-na
 - `GET /api/opportunities` — ranked opportunity list with capital-aware monthly edge estimates
 - `GET /api/calculator` — deployable-capital calculator for a selected protocol
 - `GET /api/health` — service healthcheck
+- `GET /api/connectors` — live connector stage status (Binance live funding + Base yield fallback)
 
 ### S3 — Next.js dashboard
 - Live dashboard sections for CEX carry, Base yield basket, divergence trend, and ranked opportunities
@@ -28,6 +29,8 @@ Base DeFi Pulse compares ETH perp funding/basis on major CEX venues with Base-na
 
 ## Environment
 - `NEXT_PUBLIC_API_URL` — frontend base URL for the FastAPI service (default `http://localhost:8000`)
+- `DEFI_PULSE_ENABLE_LIVE` — set to `1` to fetch live Binance premium index snapshots
+- `DEFI_PULSE_BINANCE_PREMIUM_INDEX_URL` — override the Binance premium index endpoint if needed
 
 ## Disclaimer
 - Informational analytics only; not investment advice, trade execution, or automated portfolio management
@@ -35,16 +38,20 @@ Base DeFi Pulse compares ETH perp funding/basis on major CEX venues with Base-na
 
 ## Local run
 ```bash
-cd backend && pip install -e .[dev] && uvicorn defi_pulse.api:app --reload
+cd backend && python3.11 -m pip install -e .[dev] && PYTHONPATH=src python3.11 -m uvicorn defi_pulse.api:app --reload
 cd ../frontend && npm install && npm run dev
 ```
 
 ## Verification
 ```bash
-cd backend && pytest && ruff check .
+cd backend && PYTHONPATH=src python3.11 -m pytest && python3.11 -m ruff check .
 cd ../frontend && npm run build
 ```
 
 ## Notes
 - Current data mode is `curated-fallback`, intentionally deterministic until live connectors are added.
 - Next recommended step: replace curated inputs with live venue fetchers + persisted historical snapshots.
+
+## Live connector stage
+- `DEFI_PULSE_ENABLE_LIVE=1` enables a live Binance premium-index snapshot for the CEX carry leg.
+- Base yield legs remain curated fallback until protocol-specific live adapters are added.
